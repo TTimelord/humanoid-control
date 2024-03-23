@@ -1,5 +1,5 @@
 <mujoco model="GR1T1 scene">
-  <include file="GR1T1.xml"/>
+  <include file="GR1T1_only_legs.xml"/>
 
   <!-- <statistic center="0 0 0.55" extent="1.1"/> -->
 

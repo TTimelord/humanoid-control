@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <launch>
-    <arg name="robot_type" default="humanoid"/>
+    <arg name="robot_type" default="GR1T1" doc="Robot type: [humanoid, GR1T1]"/>
     <!-- visualization config -->
     <arg name="rviz"               default="true" />
     <arg name="description_name"   default="humanoid_description"/>
@@ -9,12 +9,12 @@
 
     <!-- make the files into global parameters -->
     <!-- The task file for the mpc. -->
-    <arg name="taskFile"          default="$(find humanoid_interface)/config/mpc/task.info"/>
+    <arg name="taskFile"          default="$(find humanoid_interface)/config/mpc/task_gr1t1.info"/>
     <!-- The reference related config file of the robot -->
-    <arg name="referenceFile"     default="$(find humanoid_interface)/config/command/reference.info"/>
+    <arg name="referenceFile"     default="$(find humanoid_interface)/config/command/reference_gr1t1.info"/>
     <!-- The URDF model of the robot -->
-    <arg name="urdfFile"          default="$(find humanoid_legged_description)/urdf/humanoid_legged_control.urdf"/>
-    <arg name="urdfFileOrigin"    default="$(find humanoid_legged_description)/urdf/humanoid_legged_origin.urdf"/>
+        <arg name="urdfFile"  default="$(find gr1t1_description)/urdf/GR1T1.urdf"/>
+        <arg name="urdfFileOrigin"    default="$(find gr1t1_description)/urdf/GR1T1.urdf"/>
     <!-- The file defining gait definition -->
     <arg name="gaitCommandFile"   default="$(find humanoid_interface)/config/command/gait.info"/>
 
@@ -38,10 +38,11 @@
 
     <node pkg="humanoid_controllers" type="humanoid_target_trajectories_publisher" name="humanoid_target"
           output="screen"/>
-    <node pkg="humanoid_controllers" type="cheat_controller_node" name="cheat_controller"
+    <node pkg="humanoid_controllers" type="normal_controller_node" name="normal_controller"
           output="screen"/>
-    <node pkg="mujoco_sim" type="humanoid_sim.py" name="humanoid_sim"
+    <node pkg="mujoco_sim" type="humanoid_sim_gr1t1.py" name="humanoid_sim"
           output="screen"/>
     <node pkg="mujoco_sim" type="teleop.py" name="teleop"
           output="screen" launch-prefix="gnome-terminal --"/>
+
 </launch>

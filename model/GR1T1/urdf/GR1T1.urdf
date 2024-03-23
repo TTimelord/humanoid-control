@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot
   name="GR1T1">
+  <link name="dummy_link">
+  </link>
   <link
-    name="dummy_link">
+    name="base">
     <inertial>
       <origin
         xyz="-0.0508888422032162 0.000109183466089114 -0.0455794100581443"
@@ -47,6 +49,11 @@
       </geometry> -->
     </collision>
   </link>
+  <joint name="dummy_link_to_base" type="fixed">
+      <parent link="dummy_link"/>
+      <child link="base"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
   <link
     name="l_thigh_roll">
     <inertial>
@@ -94,7 +101,7 @@
       xyz="-0.047999 0.105 -0.057493"
       rpy="0 0 0" />
     <parent
-      link="dummy_link" />
+      link="base" />
     <child
       link="l_thigh_roll" />
     <axis
@@ -429,7 +436,7 @@
     name="l_foot_toe_joint"
     type="fixed">
     <origin
-      xyz="0.1415 0 -0.042"
+      xyz="0.1415 0 -0.05"
       rpy="0 0 0" />
     <parent
       link="l_foot_roll" />
@@ -443,7 +450,7 @@
     name="l_foot_heel_joint"
     type="fixed">
     <origin
-      xyz="-0.0445 0 -0.042"
+      xyz="-0.0445 0 -0.05"
       rpy="0 0 0" />
     <parent
       link="l_foot_roll" />
@@ -498,7 +505,7 @@
       xyz="-0.047999 -0.105 -0.057508"
       rpy="0 0 0" />
     <parent
-      link="dummy_link" />
+      link="base" />
     <child
       link="r_thigh_roll" />
     <axis
@@ -832,7 +839,7 @@
     name="r_foot_toe_joint"
     type="fixed">
     <origin
-      xyz="0.1415 0 -0.042"
+      xyz="0.1415 0 -0.05"
       rpy="0 0 0" />
     <parent
       link="r_foot_roll" />
@@ -846,7 +853,7 @@
     name="r_foot_heel_joint"
     type="fixed">
     <origin
-      xyz="-0.0445 0 -0.042"
+      xyz="-0.0445 0 -0.05"
       rpy="0 0 0" />
     <parent
       link="r_foot_roll" />
@@ -907,7 +914,7 @@
       xyz="0 0 0.0065"
       rpy="0 0 0" />
     <parent
-      link="dummy_link" />
+      link="base" />
     <child
       link="waist_yaw" />
     <axis

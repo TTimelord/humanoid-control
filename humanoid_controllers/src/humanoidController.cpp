@@ -57,7 +57,8 @@ bool humanoidController::init(HybridJointInterface* robot_hw, ros::NodeHandle& c
   //create a ROS subscriber to receive the joint pos and vel
     jointPos_ = vector_t::Zero(jointNum_);
     //set jointPos_ to {0, 0, 0.35, -0.90, -0.55, 0, 0, 0, 0.35, -0.90, -0.55, 0}
-    jointPos_ << 0.05, -0.05, 0.35, -0.90, -0.55, 0, -0.05, 0.05, 0.35, -0.90, -0.55, 0;
+    // jointPos_ << 0.05, -0.05, 0.35, -0.90, -0.55, 0, -0.05, 0.05, 0.35, -0.90, -0.55, 0;
+    jointPos_ << 0.0, 0.0, -0.41, 1, -0.59, 0, 0.0, 0.0, -0.41, 1, -0.59, 0;
     jointVel_ = vector_t::Zero(jointNum_);
     quat_ = Eigen::Quaternion<scalar_t>(1, 0, 0, 0);
   jointPosVelSub_ =  controllerNh_.subscribe<std_msgs::Float32MultiArray>("/jointsPosVel", 10, &humanoidController::jointStateCallback, this);
@@ -115,7 +116,7 @@ void humanoidController::starting(const ros::Time& time) {
   // Initial state
   //set the initial state = {0, 0, 0, 0, 0, 0, 0, 0, 0.976, 0, 0, 0, 0, 0, 0.35, -0.90, -0.55, 0, 0, 0, 0.35, -0.90, -0.55, 0}
   currentObservation_.state = vector_t::Zero(HumanoidInterface_->getCentroidalModelInfo().stateDim);
-  currentObservation_.state(8) = 0.976;
+  currentObservation_.state(8) = 0.86;
   currentObservation_.state.segment(6 + 6, jointNum_) = defalutJointPos_;
 
   updateStateEstimation(time, ros::Duration(0.002));
